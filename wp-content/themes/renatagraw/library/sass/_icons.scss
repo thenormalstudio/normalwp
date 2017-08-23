@@ -1,0 +1,23 @@
+$hover: -26px;
+
+.icon{
+	background-image: url(../img/icons.svg);
+	background-size: 78px 52px;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	height: 26px;
+	width: 26px;
+	display: block;
+	overflow: hidden;
+	text-indent: -9999px;
+
+	&.r-arrow{
+		background-position: 0 0;
+		
+		&:hover{
+			background-position: 0 $hover;	
+		}
+	}
+
+}
+
