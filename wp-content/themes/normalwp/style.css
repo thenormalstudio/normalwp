@@ -1,3 +1,30 @@
 /*
 Theme Name: Normal (Marty)
 */
+
+body { margin: 0; padding: 0; font-family: 'FranklinGothic', sans-serif; line-height: 1; background: #000; }
+h1 { font-size: 19.53125vw; margin: 0; font-weight: normal; letter-spacing: -0.0144em; position: relative; }
+
+
+
+.titletile { width: 100vw; height: 100vh; position: relative; display: flex; justify-content: center; align-items: center; }
+.titletile .tileimage { position: absolute; top: 0; bottom: 0; left: 0; right: 0; background-size: cover; background-position: center center; background-repeat: repeat-x; background-attachment: fixed; }
+.titletile .portrait { display: none; }
+
+@media (max-aspect-ratio: 4/5) {
+  .titletile .portrait { display: block; }
+  .titletile .landscape { display: none; }
+}
+
+.tile { width: 100vw; height: 100vh; position: relative; background-size: cover; background-position: center center; background-repeat: repeat-x; background-attachment: fixed; }
+
+.tile video { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; object-fit: cover; z-index: -2; }
+.tile.visible video { z-index: -1; }
+
+
+/* */
+
+button { font-family: inherit; }
+button:focus {outline:none;}
+
+.opennav { position: fixed; top: 0; right: 0;  color: #fff; background: transparent; border: none; font-size: 4.8828125vw; z-index: 1; text-transform: uppercase; letter-spacing: -0.005em; padding: 1.07421875vw 1.953125vw; }

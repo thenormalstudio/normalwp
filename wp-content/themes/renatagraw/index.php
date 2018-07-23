@@ -59,67 +59,85 @@
 	<section id="content" role="main">
 
 		<?php $isFirst = true; ?>
-		<?php foreach($assets as $asset): ?>
-		
-			<?php 
-				$type = $asset['type'];
-				switch( $type ){
-					case 'video':
-						if( wp_is_mobile()){
-							break;
-						} else {
-							$vid_src = $asset['video'];
-							$vid_filename = pathinfo($vid_src);
-							?>
-							<div class="tile video">
-								<video autoplay loop>
-								  <source src="<?php echo $vid_filename['dirname'] . "/" . $vid_filename['filename'] ?>.mp4" type="video/mp4">
-								  <source src="<?php echo $vid_filename['dirname'] . "/" . $vid_filename['filename'] ?>.ogv" type="video/ogg">
-								</video>
-							<?php if($isFirst): ?>
-								<div id="site-title">
-									<h1><?php bloginfo('name'); ?></h1>
-								</div>
-								<?php $isFirst = false;?>
-							<?php endif; ?>
-							</div>
-							<?php
-							break;
-						}
-					case 'image':
-						$size = wp_is_mobile() ? 'medium' : 'large';					
-						$bg_attachment = wp_is_mobile() ? ' scroll' : ' tile';
-						$img_src = wp_get_attachment_image_src( $asset['image'], $size );
-						?><div class="image<?php echo $bg_attachment;?>" style="background-image: url(<?php echo $img_src[0]; ?>)"><?php
-						?><img src="<?php echo esc_url( $img_src[0] ); ?>" width="<?php echo $img_src[1] ?>" height="<?php echo $img_src[2] ?>" alt="<?php echo pathinfo($img_src[0], PATHINFO_BASENAME)?>">
+		<?php foreach( $assets as $asset ) : ?>
+			<?php $type = $asset['type']; ?>
+
+			<?php if ( $type == 'video' ) : ?>
+
+				<?php if ( !wp_is_mobile() ) : ?>
+
+					<?php 
+						$vid_src = $asset['video'];
+						$vid_filename = pathinfo($vid_src);
+					?>
+					<div class="tile video">
+
+						<video autoplay loop muted="true">
+						  <source src="<?php echo $vid_filename['dirname'] . "/" . $vid_filename['filename'] ?>.mp4" type="video/mp4">
+						  <source src="<?php echo $vid_filename['dirname'] . "/" . $vid_filename['filename'] ?>.ogv" type="video/ogg">
+						</video>
+
 						<?php if($isFirst): ?>
 							<div id="site-title">
 								<h1><?php bloginfo('name'); ?></h1>
 							</div>
 							<?php $isFirst = false;?>
 						<?php endif; ?>
-						</div> <?
-						break;
-					case 'gif':
-						$img_src = wp_get_attachment_image_src( $asset['gif'], 'full' );
-						$bg_attachment = wp_is_mobile() ? ' scroll' : ' tile';
-						?><div class="image<?php echo $bg_attachment;?>" style="background-image: url(<?php echo $img_src[0]; ?>)"><?php
-						?><img src="<?php echo esc_url( $img_src[0] ); ?>" width="<?php echo $img_src[1] ?>" height="<?php echo $img_src[2] ?>" alt="<?php echo pathinfo($img_src[0], PATHINFO_BASENAME)?>">
-						<?php if($isFirst): ?>
-							<div id="site-title">
-								<h1><?php bloginfo('name'); ?></h1>
-							</div>
-							<?php $isFirst = false;?>
-						<?php endif; ?>
-						</div> <?					
-						break;
-				}
-			?>
-		
+
+					</div>
+
+				<?php endif ; ?>
+
+			<?php endif ; ?>
+
+			<?php if ( $type == 'image' ) : ?>
+
+				<?php
+					$size = wp_is_mobile() ? 'medium' : 'large';
+					$bg_attachment = wp_is_mobile() ? ' scroll' : ' tile';
+					$img_src = wp_get_attachment_image_src( $asset['image'], $size );
+				?>
+
+				<div class="image<?php echo $bg_attachment;?>" style="background-image: url(<?php echo $img_src[0]; ?>)">
+
+					<img src="<?php echo esc_url( $img_src[0] ); ?>" width="<?php echo $img_src[1] ?>" height="<?php echo $img_src[2] ?>" alt="<?php echo pathinfo($img_src[0], PATHINFO_BASENAME)?>">
+
+					<?php if($isFirst): ?>
+						<div id="site-title">
+							<h1><?php bloginfo('name'); ?></h1>
+						</div>
+						<?php $isFirst = false;?>
+					<?php endif; ?>
+
+				</div> 
+
+			<?php endif ; ?>
+
+			<?php if ( $type == 'gif' ) : ?>
+
+				<?php 
+					$img_src = wp_get_attachment_image_src( $asset['gif'], 'full' );
+					$bg_attachment = wp_is_mobile() ? ' scroll' : ' tile';
+				?>
+
+				<div class="image<?php echo $bg_attachment;?>" style="background-image: url(<?php echo $img_src[0]; ?>)">
+
+					<img src="<?php echo esc_url( $img_src[0] ); ?>" width="<?php echo $img_src[1] ?>" height="<?php echo $img_src[2] ?>" alt="<?php echo pathinfo($img_src[0], PATHINFO_BASENAME)?>">
+
+					<?php if( $isFirst ) : ?>
+						<div id="site-title">
+							<h1><?php bloginfo('name'); ?></h1>
+						</div>
+						<?php $isFirst = false;?>
+					<?php endif; ?>
+
+				</div> 
+
+			<?php endif ; ?>
+
 		<?php endforeach; ?>
 		
-		<div id="hacky-mask"	>
-		</div>
+		<div id="hacky-mask"></div>
 
 	</section>
 	
