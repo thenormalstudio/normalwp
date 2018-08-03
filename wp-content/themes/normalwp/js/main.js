@@ -16,6 +16,14 @@
 	    return ((elemTop <= docViewBottom) && (elemBottom >= docViewTop));
 	}
 
+	function showinfo() {
+		$('.about').fadeIn('fast');
+	}
+
+	function hideinfo() {
+		$('.about').fadeOut('fast');
+	}
+
 	function setVideo() {
 		$(".video").each(function(){
 			if(isScrolledIntoView($(this))){
@@ -28,6 +36,15 @@
 
 	$(document).ready( function() {
 		setVideo();
+
+		$('.opennav').on( "click", function() {
+			showinfo();
+		});
+
+		$('.closenav').on( "click", function() {
+			hideinfo();
+		});
+
 	});
 
 	$(window).load(function(){

@@ -29,6 +29,8 @@
 		              $portraitimg = get_sub_field('portrait_image');
 		              $portrait_src = wp_get_attachment_image_src( $portraitimg, $size );
 
+		              $scroll_down = get_sub_field('scroll_down');
+
 		            endwhile;
 		          endif;
 
@@ -38,6 +40,7 @@
 		          <div class="landscape tileimage" style="background-image: url(<?php echo $landscape_src[0]; ?>)"></div>
 		          <div class="portrait tileimage" style="background-image: url(<?php echo $portrait_src[0]; ?>)"></div>
 		          <h1 style="color: <?php echo $title_color; ?>"><?php echo $title_text; ?></h1>
+							<div class="scrolldown" style="background-image: url('<?php echo $scroll_down; ?>');"></div>
 		        </div>
 
       		<?php elseif ( $type == 'video' ) : ?>
@@ -78,6 +81,37 @@
 	  		<?php endwhile; ?>
 			</section>
 		<?php endif ; ?>
+
+		<div class="about visible">
+			<div class="aboutscrollable">
+
+				<button type="button" class="closenav">Close</button>
+
+				<ul class="contact">
+					<li><a href="mailto:hi@thenormalstudio.com">Email</a></li>
+					<li><a target="_blank" href="https://www.instagram.com/thenormalstudio/">Instagram</a></li>
+				</ul>
+
+				<?php $aboutimage = get_field('image'); ?>
+				<?php if ( $aboutimage ) : ?>
+					<div class="aboutimage"><div class="imagemask">
+						<img src="<?php echo $aboutimage; ?>" alt="People of Normal" />
+					</div></div>
+				<?php endif; ?>
+
+				<div class="abouttext">
+					<?php the_field('about'); ?>
+				</div>
+
+				<div class="aboutfine">
+					<?php the_field('fine_print'); ?>
+				</div>
+
+			</div>
+
+
+		</div>
+
 
 	<?php endwhile; ?>
 <?php endif; ?>

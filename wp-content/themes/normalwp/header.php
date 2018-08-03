@@ -25,4 +25,4 @@
 
 </head>
 
-<body>
+<body <?php if( wp_is_mobile() ) echo 'class="mobile"'; ?>>
